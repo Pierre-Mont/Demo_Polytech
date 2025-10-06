@@ -1,0 +1,4 @@
+# pyscript.toml — copie les fichiers dans le FS virtuel du navigateur
+[files]
+"./Puissance_4/puissance4Jeu.py" = "./Puissance_4/puissance4Jeu.py"
+"./Puissance_4/mon_autre_module.py" = "./Puissance_4/mon_autre_module.py"
