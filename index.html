@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Puissance 4 - Démo</title>
+
+    <!-- PyScript (charge Pyodide et runtime Python) -->
+    <link rel="stylesheet" href="https://pyscript.net/releases/2025.8.1/core.css" />
+    <script type="module" src="https://pyscript.net/releases/2025.8.1/core.js"></script>
+
+    <!-- Lier la configuration -->
+    <script type="pyscript-config" src="pyscript.toml"></script>
+
+    <style>
+      body { font-family: system-ui, sans-serif; max-width: 800px; margin: 2rem auto; padding: 0 1rem; }
+      #out { border: 1px solid #ccc; padding: .75rem; min-height: 3rem; white-space: pre-wrap; }
+      button { padding: .5rem .9rem; }
+    </style>
+  </head>
+  <body>
+    <h1>Puissance 4 — Démo</h1>
+    <p>Cliquez sur “Lancer” pour exécuter <code>Puissance_4/puissance4jeu.py</code> dans le navigateur.</p>
+
+    <button id="run">Lancer</button>
+    <div id="out"></div>
+
+    <!-- Code Python: importe et lance votre script -->
+    <script type="py">
+from pyscript import display
+# Import relatif depuis le FS virtuel où on a copié les fichiers
+import importlib
+mod = importlib.import_module("Puissance_4.puissance4jeu")
+
+def lancer():
+    # Adaptez selon votre API: main(), run(), jeu(), etc.
+    if hasattr(mod, "main"):
+        res = mod.main()
+    elif hasattr(mod, "run"):
+        res = mod.run()
+    else:
+        # En dernier recours, exécuter du code top-level si nécessaire
+        res = "Script exécuté (aucune fonction main/run trouvée)."
+    display(str(res) if res is not None else "OK", target="out", append=False)
+    </script>
+
+    <script type="py">
+from js import document
+document.getElementById("run").addEventListener("click", lambda evt: lancer())
+    </script>
+  </body>
+</html>
