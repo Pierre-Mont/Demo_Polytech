@@ -8,7 +8,7 @@ async function main() {
   const fs = pyodide.FS;
 
   // Fetch your Python files and write them into the Pyodide filesystem
-  const files = ["puissance4jeu.py", "algoforpuissance4.py"];
+  const files = ["puissance4jeu.py", "algo4_puissancen_thread.py"];
   for (let file of files) {
     const response = await fetch(`./py/${file}`);
     const content = await response.text();
@@ -23,7 +23,7 @@ from io import StringIO
 sys.stdout = StringIO()
 
 # Import your game logic
-import algoforpuissance4
+import algo4_puissancen_thread
 import puissance4jeu
 
 sys.stdout.getvalue()
@@ -36,3 +36,4 @@ sys.stdout.getvalue()
 }
 
 main();
+
