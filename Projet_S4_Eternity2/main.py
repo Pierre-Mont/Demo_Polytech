@@ -8,9 +8,9 @@ inside `main()` after detecting the environment.
 
 import importlib
 import sys
+import asyncio
 
-
-def main():
+async  def main():
     """Run the game. Detect if running under pygbag and import `game`
     at runtime so pygame can initialize correctly in the web build.
     """
@@ -43,7 +43,7 @@ def main():
                 pygame.quit()
             except Exception:
                 pass
-
+    await asyncio.sleep(0)
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())
